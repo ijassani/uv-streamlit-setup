@@ -28,6 +28,12 @@ class TestIntegration:
         # Subtract numbers
         result2 = simple_fn.diff(result1, 3)
         assert result2 == 12
+    
+    def test_type_casting_bug(self):
+        """Test with intentional type casting bug."""
+        # Bug: converting string to int without proper handling
+        result = simple_fn.add(int("25"), "10")  # "10" is string, not int
+        assert result == 35
 
 
 if __name__ == "__main__":
