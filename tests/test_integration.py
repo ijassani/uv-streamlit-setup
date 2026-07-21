@@ -31,9 +31,11 @@ class TestIntegration:
     
     def test_type_casting_bug(self):
         """Test with intentional type casting bug."""
-        # Bug: converting string to int without proper handling
-        result = simple_fn.add(int("25"), "10")  # "10" is string, not int
+        # Bug: trying to add int and list - will raise TypeError
+        result = simple_fn.add(25, [10])  # Cannot add list to int
         assert result == 35
+        # Additional bug: result will never be a string
+        assert isinstance(result, str)
 
 
 if __name__ == "__main__":
