@@ -29,13 +29,11 @@ class TestIntegration:
         result2 = simple_fn.diff(result1, 3)
         assert result2 == 12
     
-    def test_type_casting_bug(self):
-        """Test with intentional type casting bug."""
-        # Bug: trying to add int and list - will raise TypeError
-        result = simple_fn.add(25, [10])  # Cannot add list to int
+    def test_type_casting(self):
+        """Test type casting behavior."""
+        result = simple_fn.add(25, 10)
         assert result == 35
-        # Additional bug: result will never be a string
-        assert isinstance(result, str)
+        assert isinstance(result, (int, float))
 
 
 if __name__ == "__main__":
